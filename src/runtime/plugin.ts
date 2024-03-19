@@ -6,8 +6,8 @@ import {
   useCookie
   // @ts-ignore
 } from '#app'
-import { FetchOptions, FetchRequest, ofetch } from 'ofetch'
-import { ModuleOptions, Auth, Callback, Csrf } from '../types'
+import { type FetchOptions, type FetchRequest, ofetch } from 'ofetch'
+import { type ModuleOptions, type Auth, type Callback, type Csrf } from '../types'
 
 export default defineNuxtPlugin(async () => {
   const auth = useState<Auth>('auth', () => {
