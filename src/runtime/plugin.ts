@@ -6,8 +6,8 @@ import {
   useCookie
   // @ts-ignore
 } from '#app'
-import { FetchOptions, FetchRequest, ofetch } from 'ofetch'
-import { ModuleOptions, Auth, Callback, Csrf } from '../types'
+import { type FetchOptions, type FetchRequest, ofetch } from 'ofetch'
+import { type ModuleOptions, type Auth, type Callback, type Csrf } from '../types'
 
 export default defineNuxtPlugin(async () => {
   const auth = useState<Auth>('auth', () => {
@@ -81,8 +81,8 @@ export default defineNuxtPlugin(async () => {
     useCookie(config.csrf.tokenCookieKey).value = null
   }
 
-  async function getUser<T>(): Promise<T | undefined> {
-    if (auth.value.loggedIn && auth.value.user) {
+  async function getUser<T>({ refresh = false }: {refresh?: boolean; } = {}): Promise<T | undefined> {
+    if (!refresh && auth.value.loggedIn && auth.value.user) {
       return auth.value.user as T
     }
 
