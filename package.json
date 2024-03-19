@@ -16,7 +16,7 @@
     "src"
   ],
   "scripts": {
-    "prepare": "nuxt-module-build",
+    "prepare": "dev:build && nuxt-module-build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
