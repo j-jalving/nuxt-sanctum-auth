@@ -1,5 +1,5 @@
 import { useState } from '#app'
-import { Auth } from '../types'
+import { type Auth } from '../types'
 
 export function useAuth () {
   return useState('auth').value as Auth
