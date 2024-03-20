@@ -12,11 +12,10 @@
   "main": "./dist/module.cjs",
   "types": "./dist/types.d.ts",
   "files": [
-    "dist",
-    ".output"
+    "dist"
   ],
   "scripts": {
-    "prepare": "nuxt generate",
+    "prepare": "nuxt generate && nuxt-module-build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
