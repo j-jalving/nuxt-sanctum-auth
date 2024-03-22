@@ -161,6 +161,10 @@ export default defineNuxtPlugin(async () => {
   }
 
   const logout = async (callback?: Callback | undefined): Promise<void> => {
+    if (!config.token) {
+      await csrf()
+    }
+
     try {
       const response = await apiFetch(config.endpoints.logout, {
         method: 'POST'
