@@ -161,20 +161,9 @@ export default defineNuxtPlugin(async () => {
   }
 
   const logout = async (callback?: Callback | undefined): Promise<void> => {
-    if (!config.token) {
-      await csrf()
-    }
-
     try {
       const response = await apiFetch(config.endpoints.logout, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          [config.csrf.headerKey]: !config.token
-            ? useCookie(config.csrf.cookieKey).value
-            : null,
-          Authorization: config.token ? 'Bearer ' + auth.value.token : null
-        } as HeadersInit
+        method: 'POST'
       })
       if (callback !== undefined) {
         callback(response)
