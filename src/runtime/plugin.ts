@@ -167,7 +167,14 @@ export default defineNuxtPlugin(async () => {
 
     try {
       const response = await apiFetch(config.endpoints.logout, {
-        method: 'POST'
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          [config.csrf.headerKey]: !config.token
+            ? useCookie(config.csrf.cookieKey).value
+            : null,
+          Authorization: config.token ? 'Bearer ' + auth.value.token : null
+        } as HeadersInit
       })
       if (callback !== undefined) {
         callback(response)
