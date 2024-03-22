@@ -23,6 +23,7 @@ const defaults: ModuleOptions = {
   redirects: {
     home: '/',
     login: '/login',
+    verify: '/verify',
     logout: '/login'
   }
 }

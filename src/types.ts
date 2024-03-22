@@ -10,6 +10,7 @@ export interface Endpoints {
 export interface Redirects {
   home: string
   login: string
+  verify: string
   logout: string
 }
 

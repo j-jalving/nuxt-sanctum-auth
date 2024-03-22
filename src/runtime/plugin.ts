@@ -42,6 +42,33 @@ export default defineNuxtPlugin(async () => {
     }
   })
 
+  addRouteMiddleware('verified', async () => {
+    if (config.token) {
+      getToken()
+    }
+    await getUser()
+
+    if (auth.value.loggedIn === false) {
+      return config.redirects.login
+    }
+
+    if (!auth.value.user.email_verified_at) {
+      return config.redirects.verify
+    }
+  })
+
+  addRouteMiddleware('unverified', async () => {
+    if (config.token) {
+      getToken()
+    }
+    await getUser()
+
+    if (auth.value.user.email_verified_at) {
+      return config.redirects.home
+    }
+
+  })
+
   const apiFetch = (endpoint: FetchRequest, options?: FetchOptions) => {
     const fetch = ofetch.create({
       baseURL: config.baseUrl,
